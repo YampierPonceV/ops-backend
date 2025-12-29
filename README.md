@@ -76,5 +76,5 @@ Este proyecto fue desarrollado como parte de una transición profesional hacia e
 
 ## 👤 Autor
 
-Desarrollado por [Tu Nombre]
+Desarrollado por Yampier Ponce
 Backend Developer | Node.js | TypeScript | PostgreSQL | Linux
