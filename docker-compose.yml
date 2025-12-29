@@ -10,6 +10,15 @@ services:
       - db
     restart: unless-stopped
 
+  migrate:
+    build: .
+    command: npx prisma migrate deploy
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: "no"
+
   db:
     image: postgres:16
     container_name: ops-postgres

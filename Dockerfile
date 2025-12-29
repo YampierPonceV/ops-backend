@@ -1,23 +1,19 @@
 # ---------- Build stage ----------
 FROM node:22-alpine AS builder
-
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
 
-# 👉 Copiar prisma ANTES de generar
 COPY prisma ./prisma
 RUN npx prisma generate
 
-# 👉 Luego el resto del código
 COPY . .
 RUN npm run build
 
 
 # ---------- Production stage ----------
 FROM node:22-alpine
-
 WORKDIR /app
 
 COPY package*.json ./
@@ -28,5 +24,4 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 EXPOSE 3000
-
 CMD ["node", "dist/server.js"]
